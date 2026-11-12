@@ -1,5 +1,10 @@
-import 'package:campusflow_models/campusflow_models.dart' as campusflow_models;
+import 'package:campusflow_models/campusflow_models.dart';
 
-void main(List<String> arguments) {
-  print('Hello world: ${campusflow_models.calculate()}!');
+Future<void> main() async {
+  final repo = CampusRepository();
+  print('Chargement...');
+  final tasks = await repo.loadTasks();
+  for (final t in tasks) {
+    print('${t.title} - ${t.dueDate} - fait : ${t.done}');
+  }
 }

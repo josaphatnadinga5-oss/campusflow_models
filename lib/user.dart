@@ -12,4 +12,17 @@ class User {
       email: email ?? this.email,
     );
   }
+  factory User.fromJson(Map<String, dynamic> json) {
+    final id = json['id'];
+    final name = json['name'];
+    final email = json['email'];
+    if (id == null || name == null || email == null) {
+      throw const FormatException('Champ manquant dans User');
+    }
+    return User(
+      id: id as String,
+      name: name as String,
+      email: email as String,
+    );
+  }
 }

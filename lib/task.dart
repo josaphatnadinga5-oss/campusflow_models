@@ -27,4 +27,20 @@ class Task {
       done: done ?? this.done,
     );
   }
+  factory Task.fromJson(Map<String, dynamic> json) {
+    final id = json['id'];
+    final title = json['title'];
+    final dueDate = json['dueDate'];
+    final courseId = json['courseId'];
+    if (id == null || title == null || dueDate == null || courseId == null) {
+      throw const FormatException('Champ manquant dans Task');
+    }
+    return Task(
+      id: id as String,
+      title: title as String,
+      dueDate: DateTime.parse(dueDate as String),
+      courseId: courseId as String,
+      done: (json['done'] as bool?) ?? false,
+    );
+  }
 }
